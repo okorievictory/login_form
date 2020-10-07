@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login User</title>
+	<style type="text/css">
+		div{
+			margin-bottom: 20px
+		}
+	</style>
+</head>
+<body>
+	<fieldset>
+		<legend>User Login</legend>
+		<form name="loginForm" onsubmit="return validate()">
+			<div>
+				<input type="email" name="email" placeholder="Enter email">
+			</div>
+			<div>
+				<input type="password" name="password" placeholder="Enter Password">
+			</div>
+			<div>
+				<button>login</button>
+			</div>
+		</form>
+	</fieldset>
+	<script type="text/javascript">
+		function validate() {
+			let email = document.forms["loginForm"]["email"].value;
+			let password = document.forms["loginForm"]["password"].value;
+
+			if (email == "" || email== null || password == "" || password == null) {
+				alert("Please Enter A Valid Email Address And Password")
+				return false;
+			}else{
+				setTimeout(function(){
+					localStorage.setItem("userEmail", email);
+					localStorage.setItem("userPassword", password);
+					
+					window.location="account.html";
+				},1000)
+				alert("Processing...")
+				
+
+			}
+		}
+
+
+		
+	</script>
+</body>
+</html>

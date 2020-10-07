@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account</title>
+</head>
+<body>
+	<h1>My Account Details</h1>
+	<hr>
+	<div id="accountDetails">
+		
+	</div>
+	<div>
+		<button onclick="logout()">Logout</button>
+	</div>
+
+	<script type="text/javascript">
+		let userEmail = localStorage.getItem("userEmail");
+		let userPassword = localStorage.getItem("userPassword");
+		if (userEmail == "" || userEmail== null || userPassword == "" || userPassword == null) {
+			setTimeout(function(){
+				alert("Please Login To Continue")
+				
+				window.location="loginAssignment.html";
+			},500)
+		}
+
+
+		let users = [
+			{name:"Amara",gender:"female",married:true,age:30,lastName : "Uche", husbandName : "Kalu", email : "amara100@gmail.com", password:"Amara200"},
+
+			{name:"Ben",gender:"male",married:false,age:20,lastName : "Santos", email : "bossben2020@gmail.com", password:"BenDBoss"},
+
+			{name:"Rachael",gender:"female",married:false,age:40,lastName : "Timothy", email : "rachaella@gmail.com", password:"RachaElla200" },
+
+			{name:"Allwell",gender:"male",married:true,age:46,lastName : "Steven", email : "allwell2000@gmail.com", password:"Alwellhello200"},
+
+			{name:"Candor",gender:"female",married:true,age:70,lastName : "Andy", husbandName : "Nathan" ,email : "candor100@gmail.com", password:"Candor200"},
+		];
+
+		for(let totalUsers = 0; totalUsers < users.length; totalUsers++){
+			for(let userData in users[totalUsers]){
+				if (userData == "email" && users[totalUsers][userData] == userEmail) {
+					for(let userData in users[totalUsers]){
+						if (userData == "password" && users[totalUsers][userData] == userPassword) {
+							for(let userData in users[totalUsers]){
+								if (userData != "password") {
+									document.getElementById('accountDetails').innerHTML += userData+ " : "+ users[totalUsers][userData] + "<hr>";
+								}
+							}
+
+
+						}
+					}
+
+
+				}
+			}
+		}
+
+
+		function logout() {
+			setTimeout(function(){
+				localStorage.removeItem("userEmail");
+				localStorage.removeItem("userPassword");
+				
+				window.location="loginAssignment.html";
+			},1000)
+			alert("Loging Out...")
+		}
+		
+	</script>
+</body>
+</html>
